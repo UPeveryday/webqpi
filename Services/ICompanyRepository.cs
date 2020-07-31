@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Routines.Api.DtoParameters;
 using Routines.Api.Entities;
+using Routines.Api.Helpers;
 
 namespace Routines.Api.Services
 {
     public interface ICompanyRepository
     {
-        Task<IEnumerable<Company>> GetCompaniesAsync(CompanyDtoParameters companyDtoParameters);
+        Task<PagedList<Company>> GetCompaniesAsync(CompanyDtoParameters companyDtoParameters);
         Task<Company> GetCompanyAsync(Guid companyid);
         Task<IEnumerable<Company>> GetCompaniesAsync(IEnumerable<Guid> companyIds);
 
@@ -19,7 +20,7 @@ namespace Routines.Api.Services
 
         Task<bool> CompanyExitsAsync(Guid companyID);
 
-        Task<IEnumerable<Emloyee>> GetEmployeesAsync(Guid companyid,string genderDisplay,string q);
+        Task<IEnumerable<Emloyee>> GetEmployeesAsync(Guid companyid,EmployeeParameters parameters);
         Task<Emloyee> GetEmployeeAsync(Guid companyid, Guid employeeid);
 
         void AddEmployee(Emloyee emloyee,Guid comanuId);

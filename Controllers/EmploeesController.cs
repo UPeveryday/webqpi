@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Routines.Api.DtoParameters;
 using Routines.Api.Entities;
 using Routines.Api.Models;
 using Routines.Api.Services;
@@ -33,11 +34,11 @@ namespace Routines.Api.Controllers
         [HttpGet]
         //搜索与过滤
         //http://localhost:5000/api/companies/bbdee09c-089b-4d30-bece-44df5923716c/emploees?gender=男&q=Vince
-        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeesForCanpany(Guid companyid, [FromQuery(Name = "gender")] string gendDisplay, string q)
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeesForCanpany(Guid companyid, [FromQuery] EmployeeParameters parameters)
         {
             if (!await _companyRepository.CompanyExitsAsync(companyid)) return NotFound();
 
-            var employees = await _companyRepository.GetEmployeesAsync(companyid, gendDisplay, q);
+            var employees = await _companyRepository.GetEmployeesAsync(companyid, parameters);
 
             var dtos = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
 
@@ -177,8 +178,6 @@ namespace Routines.Api.Controllers
             return NoContent();
 
         }
-
-
 
 
         //引用我们自己的配置startuo中  报422错误

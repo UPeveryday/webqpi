@@ -9,8 +9,8 @@ using Routines.Api.Data;
 namespace Routines.Api.Migrations
 {
     [DbContext(typeof(RoutineDbContext))]
-    [Migration("20200729074117_InitSencond")]
-    partial class InitSencond
+    [Migration("20200731055006_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,12 +24,27 @@ namespace Routines.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Industry")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
                     b.Property<string>("Introduction")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(500);
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Product")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(100);
@@ -42,20 +57,29 @@ namespace Routines.Api.Migrations
                         new
                         {
                             Id = new Guid("bbdee09c-089b-4d30-bece-44df5923716c"),
+                            Country = "USA",
+                            Industry = "Software",
                             Introduction = "Great Company",
-                            Name = "Microsoft"
+                            Name = "Microsoft",
+                            Product = "Software"
                         },
                         new
                         {
                             Id = new Guid("6fb600c1-9011-4fd7-9234-881379716440"),
+                            Country = "USA",
+                            Industry = "Internet",
                             Introduction = "Don't be evil",
-                            Name = "Google"
+                            Name = "Google",
+                            Product = "Software"
                         },
                         new
                         {
                             Id = new Guid("5efc910b-2f45-43df-afae-620d40542853"),
+                            Country = "China",
+                            Industry = "Internet",
                             Introduction = "Fubao Company",
-                            Name = "Alipapa"
+                            Name = "Alipapa",
+                            Product = "Software"
                         });
                 });
 
@@ -163,7 +187,7 @@ namespace Routines.Api.Migrations
                     b.HasOne("Routines.Api.Entities.Company", "Company")
                         .WithMany("Emloyees")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
