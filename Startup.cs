@@ -61,6 +61,17 @@ namespace Routines.Api
                 };
             });
 
+            services.Configure<MvcOptions>(config =>
+            {
+                var newtonSoftJsonOutputFormatter =
+                config.OutputFormatters.OfType<NewtonsoftJsonInputFormatter>()?.FirstOrDefault();
+                if(newtonSoftJsonOutputFormatter!=null)
+                {
+                    newtonSoftJsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.company.hateoas+json");
+                }
+            });
+
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());//扫描文件下的配置文件
             services.AddScoped<ICompanyRepository,CompanyRepository>();
 
@@ -71,6 +82,7 @@ namespace Routines.Api
             //  services.AddControllersWithViews();
 
             services.AddTransient<IPropertyMappingService, PropertyMappingService>();
+            services.AddTransient<IPropertyCheckerService, PropertyCheckService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

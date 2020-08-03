@@ -21,9 +21,9 @@ namespace Routines.Api.Data
             modelBuilder.Entity<Company>().Property(x => x.Name).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Company>().Property(x => x.Introduction).IsRequired().HasMaxLength(500);
 
-            modelBuilder.Entity<Company>().Property(x => x.Country).IsRequired().HasMaxLength(50);
-            modelBuilder.Entity<Company>().Property(x => x.Industry).IsRequired().HasMaxLength(50);
-            modelBuilder.Entity<Company>().Property(x => x.Product).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<Company>().Property(x => x.Country).HasMaxLength(50);
+            modelBuilder.Entity<Company>().Property(x => x.Industry).HasMaxLength(50);
+            modelBuilder.Entity<Company>().Property(x => x.Product).HasMaxLength(100);
 
             modelBuilder.Entity<Emloyee>().Property(x => x.EmployeeNo).IsRequired().HasMaxLength(10);
             modelBuilder.Entity<Emloyee>().Property(x => x.FirstName).IsRequired().HasMaxLength(50);

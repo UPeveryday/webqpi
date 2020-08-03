@@ -9,8 +9,8 @@ using Routines.Api.Data;
 namespace Routines.Api.Migrations
 {
     [DbContext(typeof(RoutineDbContext))]
-    [Migration("20200731055107_addcompany")]
-    partial class addcompany
+    [Migration("20200803020051_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,12 +25,10 @@ namespace Routines.Api.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(50);
 
                     b.Property<string>("Industry")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(50);
 
@@ -45,7 +43,6 @@ namespace Routines.Api.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Product")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(100);
 

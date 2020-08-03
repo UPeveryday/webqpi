@@ -13,6 +13,6 @@ namespace Routines.Api.Models
         public string Industry { get; set; }
         public string Product { get; set; }
         public string Introduction { get; set; }
-
+    
     }
 }

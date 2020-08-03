@@ -23,12 +23,10 @@ namespace Routines.Api.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(50);
 
                     b.Property<string>("Industry")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(50);
 
@@ -43,7 +41,6 @@ namespace Routines.Api.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Product")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(100);
 

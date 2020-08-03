@@ -31,7 +31,7 @@ namespace Routines.Api.Controllers
             this._companyRepository = companyRepository;
         }
 
-        [HttpGet]
+        [HttpGet(Name =nameof(GetEmployeesForCanpany))]
         //搜索与过滤
         //http://localhost:5000/api/companies/bbdee09c-089b-4d30-bece-44df5923716c/emploees?gender=男&q=Vince
         public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployeesForCanpany(Guid companyid, [FromQuery] EmployeeParameters parameters)
@@ -56,7 +56,7 @@ namespace Routines.Api.Controllers
             return Ok(dtos);
         }
 
-        [HttpPost]
+        [HttpPost(Name =nameof(CreateEmployeeForCompany))]
         public async Task<ActionResult<Emloyee>> CreateEmployeeForCompany(Guid companyId, EmployeeAddDto employeeAddDto)
         {
             if (!await _companyRepository.CompanyExitsAsync(companyId))
